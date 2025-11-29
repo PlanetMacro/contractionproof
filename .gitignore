@@ -329,3 +329,7 @@ TSWLatexianTemp*
 *.pdf
 latex.out/
 build/
+
+# Project-specific ignores
+original.pdf
+homotopy-poisson-n-with-flaws.tex
