@@ -1,16 +1,124 @@
-\documentclass[12pt]{article}
+%***********************************************************
 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage{mathtools}
-\usepackage{geometry}
-\usepackage{hyperref}
+
+%***********************************************************
+\documentclass[10pt,notitlepage,reqno]{amsart}
+
+% packages
+\usepackage{comment}
+\usepackage{amssymb,amsmath,amsthm,mathrsfs,mathtools}
+\usepackage{amscd}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{url}
+\usepackage{units}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage[all]{xy}
+\usepackage{amsmath}
+\usepackage{cleveref}
+\usepackage{xy}
+\hypersetup{
+  colorlinks,
+  linkcolor	=	Gray,
+  urlcolor 	= Gray,
+  citecolor	=	Gray,
+  pdfauthor={Mirco Richter},
+  pdfkeywords={Lie, infinity, Rinehart, Schouten, symplectic, multisymplectic},
+  pdftitle={Higher Symplectic Structures on torsionless Lie Rinehart pairs II},
+  pdfsubject={Lie, Rinehart, symplectic},
+  pdfpagemode=UseNone
+}
+% **********************************************
+% ****		SWITCH COMMENTS ON AND OF		****
+% **********************************************
+
+% To read/hide all the details in the computations I have made turn comments
+% on/off by un/marking 
+
+% \includecomment{comment} 
+
+% and un/marking 
+
+ \excludecomment{comment}
+
+% *******************************
+% Adjusted multilined spacing
+% *******************************
+
+%\setlength{\multlinegap}{5pt} % need at least some gap to look good
+
+
+% styles
+%\delimitershortfall=-1pt % looks bad in this case :-( 
+
+% the following eleminates the spacing problem according to \left and \right
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+%Allow line-breaks in equations
+\interdisplaylinepenalty=250
+
+% macros and commands
+\newcommand{\bwedge}{\raisebox{0.3ex}{${\scriptstyle\bigwedge\,}$}}
+\newcommand{\bbwedge}[1]{\raisebox{0.3ex}{${\scriptstyle \bigwedge}$}
+ \ensuremath{^{\raisebox{-0.2ex}{${\scriptstyle #1}$}}\,}}
+\newcommand{\botimes}{\raisebox{0.2ex}{${\textstyle \bigotimes}$}}
+\newcommand{\boplus}{\raisebox{0.2ex}{${\textstyle \bigoplus}$}}
+\newcommand{\smin}{\,\raisebox{0.06em}{${\scriptstyle \in}$}\,}
+\newcommand{\smwedge}{{\scriptstyle \;\wedge\;}}
+\newcommand{\ssmwedge}{{\scriptstyle \;\wedge}}
+\newcommand{\ostar}{\circledast}
+\newcommand{\ordinal}[1]{[$\;\!#1\,$]}
+\newcommand{\shift}[1]{\ensuremath{{\scriptscriptstyle [#1]}}}
+\newcommand{\sgn}[1]{\ensuremath{{\scriptstyle (-1)^{\scriptstyle #1}}}}
+% Fields and categories
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\NN}{\mathbb{N}_0}
+\newcommand{\M}{\mathbf{M}}
+\newcommand{\g}{\mathfrak{g}}
+
+% other
+\newcommand{\I}{\infty}
+\newcommand{\defeq}{\vcentcolon=}
+
+% bigtimes
+\newcommand{\BIGOP}[1]{\mathop{\mathchoice
+{\raise-0.22em\hbox{\huge $#1$}}
+{\raise-0.05em\hbox{\Large $#1$}}{\hbox{\large $#1$}}{#1}}}
+%\newcommand{\bigtimes}{\BIGOP{\times}}
+
+% limit spacing under big symbols
+\def\clap#1{\hbox to 0pt{\hss#1\hss}}
+\def\mathclap{\mathpalette\mathclapinternal}
+\def\mathclapinternal#1#2{%
+\clap{$\mathsurround=0pt#1{#2}$}%
+}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{my_equation}{Equation}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem{case}{Case}
 
 \begin{document}
 
 \include{Lie_Rinehart_pairs}
-% \include{next_file}
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}

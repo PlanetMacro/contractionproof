@@ -1,4 +1,399 @@
-\section{Lie--Rinehart pairs}
+\section{A primer on Lie Rinehart pairs}\label{Lie_Rinehart_section}
+Lie Rinehart pairs generalize the algebraic structures of vector fields and smooth functions to a commutative algebra and a Lie algebra that act as modules over each other. 
 
-This section is a placeholder for the discussion of Lie--Rinehart pairs.
-Add definitions, propositions, and proofs here.
+According to Huebschmann \cite{JH2}, this idea was first used implicitly in the work of Jacobson \cite{NJ} to study certain field extensions. Further research then appeared in Herz \cite{JCH}, Palais \cite{RSP}, Rinehart \cite{GSR}, Huebschmann \cite{JH1}, Moerdijk \& Mrcun \cite{MoMr}, and a comprehensive survey is now given in \cite{JH2}.
+
+They provide a purely algebraic model for the partly geometric, partly algebraic notion of \textit{Lie algebroids}, but are more general, since no notion of ``smoothness'' is imposed.
+
+As a nontrivial ``horizontal'' generalization of Lie \textit{algebras} they naturally live in the Poisson operad (rather than the Lie operad), which may be the key distinction from ordinary Lie theory when it comes to differentiation and integration.
+
+\subsection{Lie Rinehart pairs}
+After a brief introduction to general (commutative) Lie Rinehart pairs, we look at the special case where the Lie algebra is a torsionless module over its commutative partner. These pairs allow for a general Cartan calculus, as known from multivector fields and differential forms.
+ 
+In what follows, the symbol $\mathfrak{g}$ will always denote a real Lie algebra, i.e. an $\mathbb{R}$-vector space together with an antisymmetric, bilinear map
+\begin{equation}
+[\cdot,\cdot]: \mathfrak{g}\times\mathfrak{g}\to\mathfrak{g}
+\end{equation}
+called the \textbf{Lie bracket}, such that for any three vectors $x_1$, $x_2$, and $x_3\in\mathfrak{g}$ the \textbf{Jacobi identity}
+$[x_1,[x_2,x_3]]+[x_2,[x_3,x_1]]+[x_3,[x_1,x_2]]=0$ is satisfied. If not stated otherwise, $\g$ will be considered as a (trivially) $\mathbb{Z}$\textit{-graded} Lie algebra, 
+concentrated in degree zero. In the context of graded Lie algebras we may also regard $\g$ as sitting in degree $1$ (or $-1$), in which case the Lie algebra is graded symmetric, since 
+$$
+[x,y] = (-1)^{|x||y|}[x,y]
+$$
+
+In addition $A$ will always mean a real associative and commutative algebra with unit, that is, an $\mathbb{R}$-vector space together with an associative, commutative bilinear map
+\begin{equation}
+\cdot : A \times A \to A
+\end{equation}
+called the product on $A$ and a unit $1_A\in A$. If not stated otherwise, $A$ will be considered as a (trivially) $\mathbb{Z}$\textit{-graded} algebra, concentrated in degree zero.
+
+For readability, we usually suppress the multiplication symbol in $A$ and just write $ab$ instead of $a\cdot b$.
+
+Moreover, $Der(A)$ will denote the Lie algebra of derivations of $A$, i.e. the vector space of linear endomorphisms of $A$ with $D(ab)=D(a)b+aD(b)$ and Lie bracket
+$[D,D'](a)\defeq D(D'(a))-D'(D(a))$ for any $a,b\in A$ and $D,D'\in Der(A)$.
+
+Before we get to Lie Rinehart pairs, it is helpful to define Lie algebra modules first:
+\begin{definition}[Lie algebra module]
+The algebra $A$ is called 
+a \textbf{Lie algebra module} for the Lie algebra $\g$ if
+there is a morphism of Lie algebras $D:\g\to Der(A)$. 
+In that case, $D$ is called the $\g$\textbf{-scalar multiplication}
+on $A$.
+\end{definition}
+Now a \textit{Lie Rinehart pair} is nothing but a Lie algebra 
+together with a unital and commutative algebra, 
+each of them being a module with respect to the other, such that 
+a particular compatibility equation is satisfied:  
+\begin{definition}[Lie Rinehart pair]\label{Lie_Rinehart_pair}
+Let $A$ be an associative and 
+commutative algebra with unit, $\g$ a Lie algebra, and maps 
+$\cdot_A: A\times \g \to \g$ ,
+$D: \g\to Der(A)\,;\, x\mapsto D_x $
+such that 
+$A$ is a $\g$-module with $\g$-scalar multiplication
+$D$, the vector space $\g$ is
+an $A$-module with $A$-scalar multiplication $\cdot_A$, 
+the anchor map $D$ is $A$-linear in the sense that
+$ D_{a\cdot_A x} = a\,D_x $
+for all $a\in A$ and $x\in\g$, and 
+the \textbf{Leibniz rule}
+\begin{equation}\label{eq:LR_Leibniz}
+[x,a\cdot_A y] = D_x(a)\cdot_A y + a \cdot_A[x,y]
+\end{equation}
+is satisfied for any $x,y\in\g$ and $a\in A$. Then
+$\left(A,\g\right)$ is called a \textbf{Lie Rinehart pair}
+and the map $D$ is called its \textbf{anchor map}.
+\end{definition}
+This was first referred to as an $(\R, A)$-Lie algebra 
+(\cite{JH1} and \cite{GSR})
+and later J. Huebschmann called it a Lie Rinehart algebra. 
+We use the term Lie Rinehart \textit{pair} to stress
+that both partners should be seen on an equal footing.
+\begin{remark}
+Given a Lie Rinehart pair $(A,\g)$, the exterior $A$-algebra $\bigwedge_A^\bullet \g$ carries a natural structure of a Gerstenhaber algebra: 
+the wedge product extends the $A$-module structure and the Lie bracket on $\g$ induces a graded Poisson bracket of 
+degree $-1$ on $\bigwedge_A^\bullet \g$. 
+In operadic language this means that $\bigwedge_A^\bullet \g$ is an algebra over the (shifted) \emph{Poisson} operad 
+rather than over the plain Lie operad \cite{LV}. 
+\end{remark}
+The two most extreme examples derive from commutative algebras on one side and
+Lie algebras on the other. This reflects the fact that a Poisson algebra is a
+combination of a Lie and a commutative algebra:
+\begin{example}\label{example_com_al}
+For any commutative and associative algebra with unit $A$, a 
+Lie Rinehart pair is given by $(A, Der(A))$, together with the standard 
+$A$-module structure of $Der(A)$ and the identity as anchor map.
+\end{example}
+\begin{example}
+Any real Lie algebra $\g$ is an $\R$-module
+with respect to its ordinary scalar multiplication 
+and therefore $\left(\R,\g\right)$ is a Lie Rinehart pair,
+with trivial anchor
+$$
+D:\g \to Der(\R)\,;\, x \mapsto D_x := 0\;.
+$$
+\end{example}
+One of the most prominent examples is a particular instance of \Cref{example_com_al}. It is at the heart of calculus in differential geometry
+and provides the mathematical background for symplectic and
+multisymplectic geometry:
+\begin{example}
+Let $M$ be a differentiable manifold, $C^\I(M)$ the algebra of smooth, 
+real-valued functions and $\mathfrak{X}(M)$ the Lie algebra of vector
+fields on $M$. $\mathfrak{X}(M)$ is a $C^\I(M)$-module and 
+vector fields act as derivations on smooth functions, that is, the
+map
+$$D:\mathfrak{X}(M) \to Der(C^\I(M))\,;\;
+ D_X(f)\defeq  X(f) \,\text{ for } f \in C^\I(M)
+$$
+satisfies the equation
+$D_X(fg)=D_X(f)g + fD_X(g)$. Moreover, the Leibniz rule
+$[X,fY]=D_X(f)Y+f[X,Y]$ holds. 
+\end{example}
+The following important example unmasks Lie algebroids as special 
+Lie Rinehart pairs, but expressed in a more \textit{geometric} flavor. 
+This is analogous to the situation of projective modules and smooth vector bundles, as 
+exhibited by the Serre-Swan theorem:
+\begin{example} 
+A \textbf{Lie algebroid} $(E,M,[\cdot,\cdot],D)$ is a 
+smooth vector bundle $E \to M$ with a Lie bracket 
+$[\cdot,\cdot] : \Gamma(E)\times \Gamma(E) \to \Gamma(E)$ on its space of sections
+and a vector bundle morphism $D : E \to TM$, called the anchor, such that the induced map on sections
+\[
+D : \Gamma(E) \longrightarrow \Gamma(TM) \cong \mathfrak X(M)
+\]
+is a morphism of Lie algebras and the Leibniz rule
+\[
+[X, f Y] = f[X,Y] + D(X)(f)\,Y
+\]
+holds for all $X, Y \in \Gamma(E)$ and $f \in C^\infty(M)$.
+\end{example}
+With the Lie Rinehart structure at hand, their morphisms are defined
+as appropriate algebra maps that interact properly with
+respect to the additional module structures \cite{GSR}:
+\begin{definition}[Lie Rinehart Morphism]\label{Lie_Rinehart_morphism}
+Let $(A,\g)$ and $(B,\mathfrak{h})$ be two Lie Rinehart pairs.
+A \textbf{morphism of Lie Rinehart pairs} is a pair of maps $(f,g)$ such
+that $f:A\to B$ is a morphism of associative and commutative real algebras
+with unit, $g:\g\to\mathfrak{h}$ is a morphism of Lie
+algebras, and the equations
+\begin{equation}\label{LR-morph}
+\begin{aligned}
+g(a\cdot_A x)&=f(a)\cdot_B g(x),\\
+f(D_x(a))&=D_{g(x)}(f(a))
+\end{aligned}
+\end{equation} 
+hold for any $a\in A$ and $x\in \g$.  
+\end{definition}
+This is the covariant definition. If we see a Lie Rinehart pair as a Lie
+algebroid, the structure maps are usually defined 
+contravariantly as functions between the de Rham complexes
+of the algebroids.
+
+The usability of differential geometry is built to a large extent on its 
+computational simplicity. Often basic analysis can solve 
+complex geometric problems. The underlying rules are \textit{Cartan calculus}, 
+but to make something like this available in the general Lie Rinehart setting, 
+a certain non-degeneracy condition on the double dual of the Lie partner is 
+necessary:
+
+We write $\g^\vee_A\defeq \operatorname{Hom}_{A\text{-}\mathrm{mod}}(\g,A)$ 
+for the $A$-dual of the $A$-module $\g$ and 
+$\g^{\vee\vee}$ for the appropriate double dual. 
+The following definition specializes torsionless (semi-reflexive)
+modules to the Lie Rinehart setting:
+\begin{definition}[Torsionless Lie Rinehart pair]\label{torsionless}
+Let $(A,\g)$ be a Lie Rinehart pair such that the natural map
+$\g\to \g^{\vee\vee}\,;\,
+x\mapsto \bigl(\g^\vee \to A\,;\, f\mapsto f(x)\bigr)$ is 
+injective. Then $(A,\g)$ is called \textbf{torsionless} (or 
+\textbf{semi-reflexive}).
+\end{definition}
+Torsionless Lie Rinehart pairs admit a nondegenerate and therefore
+unique pairing between tensors and cotensors,
+providing a Cartan calculus that is completely analogous to the 
+differential geometric setting (\ref{Cartan_Calculus}).
+
+\subsection{Exterior tensor algebra}
+We consider the exterior tensor power of the Lie algebra, seen
+as a module with respect to its commutative partner. The Lie bracket
+extends to the \textit{Schouten-Nijenhuis bracket}, which interacts
+with the exterior product in terms of a Gerstenhaber structure. This 
+is the ``free commutative prolongation'' 
+$\mathcal{C}om(A\oplus s\mathfrak{g})$ of the Gerstenhaber structure on
+$A\oplus s\mathfrak{g}$.
+
+We define $\otimes^0_A\mathfrak{g}\defeq A$ 
+and write $\otimes^n_A\mathfrak{g}$ for the 
+$n$-fold $A$-tensor products of the $A$-module 
+$\mathfrak{g}$. Since $A$ is commutative, 
+$\otimes^n_A\mathfrak{g}$ is an $A$-module.
+
+\begin{definition}[Exterior tensor algebra]\label{tensor_algebra} 
+Let $(A,\mathfrak{g})$ be a Lie Rinehart pair and 
+$n\in\Z$. For $n<0$ define $X_n(\mathfrak{g},A)=\{0\}$ and for $n\geq 0$
+let $X_n(\mathfrak{g},A)\defeq \otimes^n_A\mathfrak{g}/J^n$ be
+the quotient $A$-module of the $n$-th tensor power by the submodule $J^n$, 
+which is spanned by all $x_1\otimes\cdots\otimes x_n$ with 
+$x_i = x_j$ for some $i \neq j$. Then the direct sum 
+\begin{equation}
+X_\bullet(\mathfrak{g},A)\defeq \textstyle\bigoplus_{n\in\Z} X_n(\mathfrak{g},A)
+\end{equation}
+together with the quotient 
+$\smwedge: X_\bullet(\mathfrak{g},A) \times 
+ X_\bullet(\mathfrak{g},A) \to
+  X_\bullet(\mathfrak{g},A)\;;\; (x,y)\mapsto x\smwedge y$ of the
+$A$-tensor multiplication is called the \textbf{exterior tensor algebra} of 
+$(A,\mathfrak{g})$ and the product is called the \textbf{exterior tensor product}. 
+The induced grading on $X_\bullet(\mathfrak{g},A)$ is called the 
+\textbf{tensor grading}.
+
+In addition we define $X^{-n}(\mathfrak{g},A)\defeq  X_n(\mathfrak{g},A)$ for any
+integer $n\in\Z$. The induced grading on the direct sum
+\begin{equation}
+X^\bullet(\mathfrak{g},A)\defeq \textstyle\bigoplus_{n\in\Z} X^n(\mathfrak{g},A)
+\end{equation}
+is called the \textbf{cotensor grading}. If the grading is irrelevant we just 
+write $X(\mathfrak{g},A)$.
+\end{definition}
+
+\begin{proposition}
+Let $A$ be a commutative unital algebra and let $L$ be an $A$-module.
+Write $L^\vee \defeq \operatorname{Hom}_{A\text{-}\mathrm{mod}}(L,A)$ for
+the $A$-dual and $L^{\vee\vee} \defeq \operatorname{Hom}_{A\text{-}\mathrm{mod}}(L^\vee,A)$
+for the double dual. Consider the evaluation pairing
+\[
+\langle\cdot,\cdot\rangle \colon L \times L^\vee \longrightarrow A,\qquad
+\langle x,f\rangle \defeq f(x).
+\]
+Then:
+\begin{enumerate}
+\item[(1)] The pairing is nondegenerate in the second argument, i.e.
+\begin{equation}\label{eq:nondeg_second}
+\forall f\in L^\vee:\ \Bigl(\forall x\in L:\ \langle x,f\rangle = 0\Bigr)\ \Longrightarrow\ f=0.
+\end{equation}
+\item[(2)] The following are equivalent:
+\begin{enumerate}
+\item[(a)] The pairing is nondegenerate in the first argument, i.e.
+\begin{equation}\label{eq:nondeg_first}
+\forall x\in L:\ \Bigl(\forall f\in L^\vee:\ \langle x,f\rangle = 0\Bigr)\ \Longrightarrow\ x=0.
+\end{equation}
+\item[(b)] The canonical $A$-linear map
+\[
+\iota_L \colon L \longrightarrow L^{\vee\vee},\qquad
+x \longmapsto \bigl(L^\vee \to A;\ f\mapsto f(x)\bigr)
+\]
+is injective.
+\end{enumerate}
+In particular, if $L$ is torsionless (or semi-reflexive) in the sense that
+$\iota_L$ is injective, then the pairing $\langle\cdot,\cdot\rangle$ is
+nondegenerate in both arguments in the sense of \eqref{eq:nondeg_second}
+and \eqref{eq:nondeg_first}.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) Let $f\in L^\vee$ and assume $\langle x,f\rangle = f(x)=0$ for all $x\in L$.
+Then $f$ is the zero $A$-linear map $L\to A$, hence $f=0$. This proves
+\eqref{eq:nondeg_second}.
+
+(2) For each $x\in L$ the canonical map $\iota_L$ is given by
+\[
+\iota_L(x)\colon L^\vee \longrightarrow A,\qquad
+\iota_L(x)(f) = f(x) = \langle x,f\rangle.
+\]
+Thus $\iota_L(x)=0$ if and only if $\langle x,f\rangle=0$ for all $f\in L^\vee$.
+Therefore the condition \eqref{eq:nondeg_first} is exactly the statement that
+$\iota_L$ has trivial kernel, i.e. that $\iota_L$ is injective. This shows
+the equivalence of (a) and (b).
+\end{proof}
+
+
+\begin{proposition}
+Let $A$ be a commutative unital algebra and $L$ an $A$-module, and let
+$X_\bullet(L,A) = \bigoplus_{n\in\mathbb{Z}} X_n(L,A)$ be the exterior
+tensor algebra as in Definition~\ref{tensor_algebra}, with tensor grading
+$\deg(X_n)=n$. Then:
+\begin{enumerate}
+\item[(1)] Every element $x\in X_\bullet(L,A)$ is a finite sum of
+homogeneous tensors with respect to the tensor grading, i.e.\ there exist
+uniquely determined elements $x_n\in X_n(L,A)$, $n\in\mathbb{Z}$, with
+$x_n=0$ for all but finitely many $n$, such that
+\[
+x = \sum_{n\in\mathbb{Z}} x_n.
+\]
+
+\item[(2)] For each integer $n>0$, every tensor $x\in X_n(L,A)$ is a finite
+sum of simple exterior tensors, i.e.\ there exist $k\in\mathbb{N}$ and
+elements $x_{i_j}\in L$ (for $1\leq i\leq k$ and $1\leq j\leq n$) such that
+\[
+x = \sum_{i=1}^k
+x_{i_1} \smwedge x_{i_2} \smwedge \cdots \smwedge x_{i_n}
+\quad\in X_n(L,A).
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) By definition, $X_\bullet(L,A)$ is the direct sum
+\[
+X_\bullet(L,A) = \bigoplus_{n\in\mathbb{Z}} X_n(L,A),
+\]
+with $X_n(L,A) = \{0\}$ for $n<0$. The direct sum $\bigoplus_{n\in\mathbb{Z}} X_n(L,A)$
+consists, by definition, of all families $(x_n)_{n\in\mathbb{Z}}$ with
+$x_n\in X_n(L,A)$ and $x_n=0$ for all but finitely many $n$, modulo the
+natural identification with finite formal sums $\sum_n x_n$. Hence any
+$x\in X_\bullet(L,A)$ can be written in the form
+\[
+x = \sum_{n\in\mathbb{Z}} x_n,\qquad x_n\in X_n(L,A),
+\]
+with only finitely many nonzero $x_n$. The $x_n$ are uniquely determined
+by $x$, since the $X_n(L,A)$ are pairwise disjoint summands in the direct
+sum decomposition. This is precisely the statement that every tensor is a
+finite sum of homogeneous tensors with respect to the tensor grading.
+
+(2) Fix $n>0$. Recall that $X_n(L,A)$ is defined as the quotient
+\[
+X_n(L,A) \defeq \otimes_A^n L \big/ J^n,
+\]
+where $\otimes_A^n L$ is the $n$-fold tensor product of $L$ over $A$, and
+$J^n$ is the $A$-submodule generated by all pure tensors
+$x_1\otimes\cdots\otimes x_n$ with $x_i=x_j$ for some $i\neq j$.
+
+First, every element of the tensor product $\otimes_A^n L$ is, by definition
+of the tensor product, a finite $A$-linear combination of simple tensors
+$x_1\otimes\cdots\otimes x_n$ with $x_j\in L$. Thus any
+$\widetilde x\in\otimes_A^n L$ can be written as
+\[
+\widetilde x = \sum_{i=1}^k a_i\,
+x_{i_1}\otimes x_{i_2}\otimes\cdots\otimes x_{i_n},
+\]
+with $a_i\in A$ and $x_{i_j}\in L$. Since $L$ is an $A$-module, we may
+absorb each scalar $a_i$ into, say, the first factor and rewrite
+\[
+\widetilde x = \sum_{i=1}^k
+(a_i x_{i_1})\otimes x_{i_2}\otimes\cdots\otimes x_{i_n}.
+\]
+Renaming $a_i x_{i_1}$ as $x_{i_1}$, we see that every element of
+$\otimes_A^n L$ is a finite sum of pure tensors of the form
+$x_{i_1}\otimes\cdots\otimes x_{i_n}$ with $x_{i_j}\in L$.
+
+Let
+\[
+q_n\colon \otimes_A^n L \longrightarrow X_n(L,A)
+\]
+denote the canonical quotient map. Given any $x\in X_n(L,A)$, choose
+$\widetilde x\in\otimes_A^n L$ with $q_n(\widetilde x)=x$, and write
+\[
+\widetilde x = \sum_{i=1}^k
+x_{i_1}\otimes x_{i_2}\otimes\cdots\otimes x_{i_n}.
+\]
+In the quotient we obtain
+\[
+x = q_n(\widetilde x)
+  = \sum_{i=1}^k q_n(x_{i_1}\otimes\cdots\otimes x_{i_n})
+  = \sum_{i=1}^k
+    x_{i_1} \smwedge x_{i_2} \smwedge\cdots\smwedge x_{i_n},
+\]
+where we use the standard identification of the class of a simple tensor
+$x_{i_1}\otimes\cdots\otimes x_{i_n}$ in $X_n(L,A)$ with the simple
+exterior tensor $x_{i_1}\smwedge\cdots\smwedge x_{i_n}$.
+
+Thus every homogeneous tensor of degree $n>0$ is indeed a finite sum of
+simple exterior tensors, as claimed.
+\end{proof}
+
+The exterior tensor power of a Lie Rinehart pair has the structure of a 
+\textit{Gerstenhaber algebra} (also called Poisson-$2$ algebra) with respect to the 
+exterior product and the Schouten-Nijenhuis bracket. The latter is nothing but
+the free commutative lift of the Lie bracket on the Gerstenhaber algebra
+$A\oplus s\g$.
+\begin{definition}[Schouten-Nijenhuis bracket]
+Let $(A,\g)$ be a Lie Rinehart pair with exterior
+tensor power $X(\g,A)$. Then the
+\textbf{Schouten-Nijenhuis bracket} is the map
+\begin{equation}
+\left[\cdot,\cdot\right]: X(\g,A) \times 
+ X(\g,A) \to X(\g,A)\;,
+\end{equation}
+defined by $[a,b]=0$ as well as $[x,a]=[a,x]=D_x(a)$ on scalars $a,b\in A$ and 
+vectors $x\in\g$, and by
+\begin{multline}\label{SN_1}
+[x_1\smwedge\cdots \smwedge x_n,y_1\smwedge\cdots\smwedge y_m]=\\
+	\textstyle\sum_{i,j}(-1)^{i+j}[x_i,y_j]\smwedge x_1\smwedge\cdots\smwedge 
+		\widehat{x_i}\smwedge\cdots\smwedge x_n\smwedge
+			y_1\smwedge\cdots\smwedge \widehat{y_j}\smwedge\cdots\smwedge y_m
+\end{multline}
+on simple tensors 
+$x_{1}\smwedge\cdots\smwedge x_{n}$ and 
+$y_{1}\smwedge\cdots\smwedge y_{m}\in X(\g,A)$, 
+and then extended to $X(\g,A)$ by $A$-additivity.
+
+We write $(X(\g,A),\smwedge,[\cdot,\cdot])$ for
+the associated Gerstenhaber algebra and call it the 
+\textbf{Schouten-Nijenhuis algebra} of $(A,\g)$. 
+\end{definition}
+
+In the case of multivector fields, a proof can be found, for example, 
+in \cite{MM} or \cite{PM}. Those proofs rely only on the Lie 
+Rinehart structure and therefore carry over
+verbatim to the general situation.
